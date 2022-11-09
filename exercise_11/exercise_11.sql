@@ -3,3 +3,12 @@
 -- GROUP BY the film_id
 -- ORDER in descending order
 -- LIMIT 10
+SELECT film.title, COUNT(rental.rental_date) as count
+FROM inventory
+LEFT JOIN rental
+ON inventory.inventory_id = rental.inventory_id
+LEFT JOIN film
+ON inventory.film_id = film.film_id
+GROUP BY film.film_id
+ORDER BY count DESC
+LIMIT 10
